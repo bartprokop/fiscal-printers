@@ -10,7 +10,7 @@
 
     <name>Fiscal Printer Drivers</name>
     <url>https://bart.prokop.name/</url>
-    <description>Drivers for Fiscal Printers</description>
+    <description>Drivers for Fiscal Printers for Poland</description>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +26,19 @@
             <url>https://www.linkedin.com/in/bartprokop/</url>
         </developer>
     </developers>
+    
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    
+    <scm>
+        <connection>scm:git:git://github.com/bartprokop/fiscal-printers.git</connection>
+        <developerConnection>scm:git:ssh://github.com/bartprokop/fiscal-printers.git</developerConnection>
+        <url>https://github.com/bartprokop/fiscal-printers</url>
+    </scm>
     
     <dependencies>
         <dependency>
@@ -77,6 +90,17 @@
                     </execution>
                 </executions>
             </plugin>   
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
