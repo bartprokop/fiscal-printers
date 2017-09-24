@@ -89,7 +89,7 @@ public class Thermal301 implements FiscalPrinter {
      * Służy do wydrukowania paragonu fiskalnego
      *
      * @param slip paragon do wydrukowania
-     * @throws name.prokop.bart.hardware.fiscalprinter.FiscalPrinterException w
+     * @throws name.prokop.bart.fps.FiscalPrinterException w
      * przypadku niepowodzenia, wraz z opisem błędu
      */
     @Override

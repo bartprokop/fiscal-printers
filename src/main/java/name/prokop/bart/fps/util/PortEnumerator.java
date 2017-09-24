@@ -21,15 +21,7 @@ import java.util.Enumeration;
 /**
  * Klasa pomocnicza do obsługi biblioteki rxtx.<br>
  * Szczegółowe informacje o tej bibliotece znajdują się na
- * http://rxtx.qbang.org/wiki. Biblioteka pochodzi z rxtx.org<br>
- * <ol>
- * Instalacja biblioteki rxtx pod Windows:<br>
- * <li>Dodaj RXTXcomm.jar do swoijego classpath
- * <li>Plik rxtxSerial.dll i rxtxParallel.dll wgraj do
- * C:\WINDOWS\<B>system32</B>.
- * </ol>
- * Powinno działać.<br>
- * <br>
+ * http://rxtx.qbang.org/wiki. Biblioteka pochodzi z rxtx.org
  * To, czy porty szeregowe są prawidłowo rozpoznawalne w naszym systemie można
  * stwierdzić uruchamiając następujące klasy:<br>
  * <CODE>java -cp "RXTXcomm.jar;bart.jar" name.prokop.bart.hardware.comm.PortEnumerator</CODE>
@@ -183,8 +175,6 @@ public class PortEnumerator {
      *
      * @return Zwraca port szeregowy o zadanej nazwie
      * @param portName Nazwa portu
-     * @throws name.prokop.bart.common.BartException W przypadku, gdy nie udało
-     * się otworzyć portu szeregowego, wraz z opisem.
      */
     public static SerialPort getSerialPort(String portName) throws IOException {
         try {

@@ -71,7 +71,7 @@ public interface FiscalPrinter {
      * Prints a slip
      *
      * @param slip - encapsulated slip data
-     * @throws FiscalPrinterException
+     * @throws name.prokop.bart.fps.FiscalPrinterException
      */
     public void print(Slip slip) throws FiscalPrinterException;
 
@@ -80,7 +80,7 @@ public interface FiscalPrinter {
     /**
      * Opens money drawer
      *
-     * @throws FiscalPrinterException
+     * @throws name.prokop.bart.fps.FiscalPrinterException
      */
     public void openDrawer() throws FiscalPrinterException;
 
