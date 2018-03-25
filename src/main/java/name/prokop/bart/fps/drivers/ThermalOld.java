@@ -765,7 +765,8 @@ public class ThermalOld implements FiscalPrinter {
     }
 
     private void disconnect() {
-        serialPort.close();
+        if (serialPort!=null)
+            serialPort.close();
     }
 
     private void sendPrefix() {
