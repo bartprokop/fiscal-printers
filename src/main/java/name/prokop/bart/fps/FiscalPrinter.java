@@ -15,6 +15,7 @@ package name.prokop.bart.fps;
 import java.lang.reflect.Method;
 import name.prokop.bart.fps.datamodel.Invoice;
 import name.prokop.bart.fps.datamodel.Slip;
+import name.prokop.bart.fps.drivers.ConsoleDump;
 import name.prokop.bart.fps.drivers.DFEmul;
 import name.prokop.bart.fps.drivers.ElzabMera;
 import name.prokop.bart.fps.drivers.ElzabOmega2;
@@ -34,6 +35,7 @@ public interface FiscalPrinter {
 
     public static enum Type {
 
+        Console(ConsoleDump.class, "Console"),
         DFEmul(DFEmul.class, "Emulator"),
         ElzabMera(ElzabMera.class, "Elzab Mera"),
         ElzabOmega2(ElzabOmega2.class, "Elzab Omega 2"),
@@ -44,6 +46,7 @@ public interface FiscalPrinter {
         Thermal203(Thermal203.class, "Posnet Thermal 2.03"),
         Thermal301(Thermal301.class, "Posnet Thermal 3.01"),
         ThermalOld(ThermalOld.class, "Thermal stara homologacja");
+
         private final Class<?> driverClass;
         private final String friendlyName;
 
