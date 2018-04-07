@@ -1,6 +1,6 @@
 # fiscal-printers
 
-Sterowniki drukarek fiskalnych.
+## Sterowniki drukarek fiskalnych.
 
 Uwaga ten kod ma ponad 10 lat (aktywnie rozwijany był w latach 2001-2007), ale ponieważ świetnie działa, postanowiłem oddać go do domeny publicznej.
 
@@ -16,7 +16,7 @@ Bibllioteke najlepiej pobrac z Maven Central
     <version>1.0.0</version>
 ```
 
-Testowanie drukarki fiskalnej
+## Testowanie drukarki fiskalnej
 
 Nalezy zbudowac pakiet testowy: ```mvn clean install -Pass```
 
@@ -34,4 +34,5 @@ $ java -cp drivers-1.0.1-SNAPSHOT-jar-with-dependencies.jar name.prokop.bart.fps
 $ java -cp drivers-1.0.1-SNAPSHOT-jar-with-dependencies.jar name.prokop.bart.fps.drivers.ThermalOld COM1
 ```
 
-.
+## Uzycie z serwerem wydruku
+
