@@ -31,26 +31,27 @@ import org.json.JSONObject;
  * @author Bartłomiej Prokop
  */
 public class CloudPrint {
-    
+
     public static void main(String... args) throws Exception {
         args = new String[]{"Console", "COM1", "898288f0-bf79-4827-9d11-6b0b492e354c"};
         if (args.length != 3) {
             printHelp();
             return;
         }
-        
+
         final FiscalPrinter.Type type = FiscalPrinter.Type.valueOf(args[0]);
         final String comPort = args[1];
         final String printerId = args[2];
-        
+
         System.out.println("Printer: " + type + ", port: " + comPort + ", id: " + printerId + ".");
         final URL url = new URL("https://fiscal-printer.appspot.com/v1/queue/" + printerId);
         System.out.println("Server URL: " + url);
-        
+
         final char[] X = new char[]{'-', '\\', '|', '/'};
         int counter = 0;
         while (true) {
             System.out.print(X[counter++ % X.length]);
+            Thread.sleep(500);
             try {
                 Slip slip = retrieveSlip(url);
                 System.out.print('\b');
@@ -58,19 +59,18 @@ public class CloudPrint {
                     FiscalPrinter fiscalPrinter = type.getFiscalPrinter(comPort);
                     fiscalPrinter.print(slip);
                 }
-                Thread.sleep(500);
             } catch (Exception e) {
                 System.err.println("Error: " + e);
             }
         }
     }
-    
+
     private static Slip retrieveSlip(URL url) throws Exception {
         final HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         if (conn.getResponseCode() == 404) {
             return null;
         }
-        
+
         InputStream is = conn.getInputStream();
         InputStreamReader isr = new InputStreamReader(is);
         int ch;
@@ -78,10 +78,10 @@ public class CloudPrint {
         while ((ch = isr.read()) != -1) {
             sb.append((char) ch);
         }
-        
+
         return parseSlip(sb.toString());
     }
-    
+
     private static void printHelp() {
         System.out.println("Usage: PrinterType COMx printer-qeueue-uuid");
         System.out.println("Avaiable PrinterTypes:");
@@ -89,15 +89,15 @@ public class CloudPrint {
             System.out.print(" " + t.name());
         }
     }
-    
+
     private static Slip parseSlip(String string) {
         final JSONObject jsonReceipt = new JSONObject(string);
-        
+
         Slip slip = new Slip();
         slip.setReference(jsonReceipt.optString("reference", null));
         slip.setCashierName(jsonReceipt.optString("cashier", null));
         slip.setCashbox(jsonReceipt.optString("register", null));
-        
+
         final JSONArray jsonItems = jsonReceipt.optJSONArray("items");
         for (int i = 0; i < jsonItems.length(); i++) {
             final JSONObject jsonItem = jsonItems.getJSONObject(i);
@@ -108,10 +108,10 @@ public class CloudPrint {
             sl.setTaxRate(VATRate.valueOf(jsonItem.optString("vatRate", "VAT23")));
             slip.addLine(sl);
         }
-        
+
         slip.addPayment(SlipPayment.PaymentType.Cash, slip.getTotal(), null);
-        
+
         return slip;
     }
-    
+
 }
