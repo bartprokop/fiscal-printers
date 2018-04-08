@@ -36,3 +36,16 @@ $ java -cp drivers-1.0.1-SNAPSHOT-jar-with-dependencies.jar name.prokop.bart.fps
 
 ## Uzycie z serwerem wydruku
 
+Serwer wydruku fiskalnego dostępny jest [pod tym adresem](https://fiscal-printer.appspot.com/). Aby użyć serwera należy uruchomić serwer wydruku fiskalnego w trybie klienta sieciowego, podając typ drukarki, port szeregowy oraz nazwę kolejki wydruku (losowy numer UUID). Przykładowo:
+
+```
+$ java -cp drivers-1.0.1-SNAPSHOT-jar-with-dependencies.jar name.prokop.bart.fps.CloudPrint Thermal101 COM1 898288f0-bf79-4827-9d11-6b0b492e354c
+```
+
+Następnie należy wysłać paragon do serwera. Dla testów można użyć poniższy curl. Kolejkę drukarki podajemy jako ostatni segment ścieżki:
+
+```
+curl -X POST "https://fiscal-printer.appspot.com/v1/queue/898288f0-bf79-4827-9d11-6b0b492e354c" -H "accept: */*" -H "Content-Type: application/json" -d "{\"reference\":\"R-k 0123456789\",\"cashier\":\"Bartek Prokop\",\"register\":\"XX99\",\"items\":[{\"description\":\"Test drukarki\",\"amount\":1,\"unitPrice\":0.01,\"vatRate\":\"VAT23\"}]}"
+```
+
+Miłego korzystania.
