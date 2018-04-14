@@ -518,7 +518,7 @@ public class Thermal101 implements FiscalPrinter {
         sendENQ();
     }
     private final static String footLine1 = "Serwer wydruku fiskalnego wersja 2.0";
-    private final static String footLine2 = "(c)2014 http://fps.bart.prokop.name/";
+    private final static String footLine2 = "(c)2014 https://bart.prokop.name/";
     private final static String footLine3 = "Sterownik: PosnetThermal 1.01";
 
     private void sendLBSERM(byte ps) throws FiscalPrinterException {

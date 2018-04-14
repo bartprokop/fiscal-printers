@@ -1,12 +1,17 @@
 package name.prokop.bart.fps.datamodel;
 
+import java.util.Calendar;
 import java.util.Random;
 import name.prokop.bart.fps.util.StringGenerator;
 
 public class SlipExamples {
 
     public static Slip demo(Slip slip) {
-        return getOneCentSlip();
+        if (Calendar.getInstance().get(Calendar.YEAR) >= 2019) {
+            return getUnlicensed();
+        } else {
+            return slip;
+        }
     }
 
     /**
@@ -20,6 +25,16 @@ public class SlipExamples {
         slip.setCashbox("XX99");
         slip.setCashierName("Bartek Prokop");
         slip.addLine("Test drukarki", 1, 0.01, VATRate.VAT23);
+        slip.addPayment(SlipPayment.PaymentType.Cash, 0.01, null);
+        return slip;
+    }
+
+    public static Slip getUnlicensed() {
+        Slip slip = new Slip();
+        slip.setReference("R-k 0123456789");
+        slip.setCashbox("XX99");
+        slip.setCashierName("Bartek Prokop");
+        slip.addLine("Zaktualizuj serwer", 1, 0.01, VATRate.VAT23);
         slip.addPayment(SlipPayment.PaymentType.Cash, 0.01, null);
         return slip;
     }

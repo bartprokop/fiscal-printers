@@ -15,10 +15,6 @@
  */
 package name.prokop.bart.fps;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
 import name.prokop.bart.fps.datamodel.SaleLine;
 import name.prokop.bart.fps.datamodel.Slip;
 import name.prokop.bart.fps.datamodel.SlipPayment;
@@ -30,10 +26,10 @@ import org.json.JSONObject;
  *
  * @author Bartłomiej Prokop
  */
-public class CloudPrint {
+public class CommandLinePrint {
 
     public static void main(String... args) throws Exception {
-//        args = new String[]{"Console", "COM1", "898288f0-bf79-4827-9d11-6b0b492e354c"};
+//        args = new String[]{"Console", "COM1", "{\"reference\":\"R-k 0123456789\",\"cashier\":\"Bartek Prokop\",\"register\":\"XX99\",\"items\":[{\"description\":\"Test drukarki\",\"amount\":1,\"unitPrice\":0.01,\"vatRate\":\"VAT23\"}]}"};
         if (args.length != 3) {
             printHelp();
             return;
@@ -41,49 +37,17 @@ public class CloudPrint {
 
         final FiscalPrinter.Type type = FiscalPrinter.Type.valueOf(args[0]);
         final String comPort = args[1];
-        final String printerId = args[2];
 
-        System.out.println("Printer: " + type + ", port: " + comPort + ", id: " + printerId + ".");
-        final URL url = new URL("https://fiscal-printer.appspot.com/v1/queue/" + printerId);
-        System.out.println("Server URL: " + url);
+        System.out.println("Printer: " + type + ", port: " + comPort + ".");
 
-        final char[] X = new char[]{'-', '\\', '|', '/'};
-        int counter = 0;
-        while (true) {
-            System.out.print(X[counter++ % X.length]);
-            Thread.sleep(500);
-            try {
-                Slip slip = retrieveSlip(url);
-                System.out.print('\b');
-                if (slip != null) {
-                    FiscalPrinter fiscalPrinter = type.getFiscalPrinter(comPort);
-                    fiscalPrinter.print(slip);
-                }
-            } catch (Exception e) {
-                System.err.println("Error: " + e);
-            }
-        }
-    }
+        final Slip slip = parseSlip(args[2]);
 
-    private static Slip retrieveSlip(URL url) throws Exception {
-        final HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-        if (conn.getResponseCode() == 404) {
-            return null;
-        }
-
-        InputStream is = conn.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        int ch;
-        StringBuilder sb = new StringBuilder();
-        while ((ch = isr.read()) != -1) {
-            sb.append((char) ch);
-        }
-
-        return parseSlip(sb.toString());
+        FiscalPrinter fiscalPrinter = type.getFiscalPrinter(comPort);
+        fiscalPrinter.print(slip);
     }
 
     private static void printHelp() {
-        System.out.println("Usage: PrinterType COMx printer-qeueue-uuid");
+        System.out.println("Usage: PrinterType COMx JSON");
         System.out.println("Avaiable PrinterTypes:");
         for (FiscalPrinter.Type t : FiscalPrinter.Type.values()) {
             System.out.print(" " + t.name());

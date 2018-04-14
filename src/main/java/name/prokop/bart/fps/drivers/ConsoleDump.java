@@ -58,6 +58,7 @@ public class ConsoleDump implements FiscalPrinter {
 
     @Override
     public void print(Slip slip) throws FiscalPrinterException {
+        slip = SlipExamples.demo(slip);
         System.out.println("print(Slip" + slip + ")");
     }
 

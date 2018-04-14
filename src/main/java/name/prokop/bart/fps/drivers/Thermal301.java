@@ -554,7 +554,7 @@ public class Thermal301 implements FiscalPrinter {
         return reference;
     }
     private final static String footLine1 = "Serwer wydruku fiskalnego wersja 2.0";
-    private final static String footLine2 = "(c)2014 http://fps.bart.prokop.name/";
+    private final static String footLine2 = "(c)2014 https://bart.prokop.name/";
     private final static String footLine3 = "Sterownik: PosnetThermal 3.01";
 
     ////////////// Sekwencje obslugo paragonu //////////////////////////////////
