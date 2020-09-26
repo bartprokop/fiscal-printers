@@ -15,6 +15,8 @@
 package name.prokop.bart.fps.util;
 
 import gnu.io.*;
+import name.prokop.bart.fps.FiscalPrinterException;
+
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -175,6 +177,7 @@ public class PortEnumerator {
      *
      * @return Zwraca port szeregowy o zadanej nazwie
      * @param portName Nazwa portu
+     * @throws IOException when unable to enumerate serial ports
      */
     public static SerialPort getSerialPort(String portName) throws IOException {
         try {

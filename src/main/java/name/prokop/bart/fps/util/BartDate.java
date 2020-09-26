@@ -159,7 +159,7 @@ public class BartDate {
      * Converts string to date
      *
      * @param d date as YYYYMMDD
-     * @return
+     * @return date extracted from string
      */
     public static Date encodeDate(String d) {
         SimpleDateFormat dateFormater = new SimpleDateFormat("yyyyMMdd");
@@ -174,7 +174,7 @@ public class BartDate {
      * Converts string to date
      *
      * @param d date as YYYYMMDD
-     * @return
+     * @return encided date
      */
     public static Date encodeUTCDate(String d) {
         SimpleDateFormat dateFormater = new SimpleDateFormat("yyyyMMdd");
@@ -189,7 +189,7 @@ public class BartDate {
     /**
      *
      * @param d - timestamp as yyyyMMdd HH:mm
-     * @return
+     * @return string representation of Date
      */
     public static Date encodeDateTime(String d) {
         SimpleDateFormat dateFormater = new SimpleDateFormat("yyyyMMdd HH:mm");
@@ -247,8 +247,8 @@ public class BartDate {
     /**
      * HH:mm
      *
-     * @param format
-     * @param date
+     * @param format format date will be written as
+     * @param date date to be formatted
      * @return formated date
      */
     public static String getFormatedDate(String format, Date date) {

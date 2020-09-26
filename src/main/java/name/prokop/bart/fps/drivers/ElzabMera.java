@@ -37,6 +37,7 @@ public class ElzabMera implements FiscalPrinter {
 
     /**
      * @param args the command line arguments
+     * @throws Exception any exception
      */
     public static void main(String[] args) throws Exception {
         FiscalPrinter fp;

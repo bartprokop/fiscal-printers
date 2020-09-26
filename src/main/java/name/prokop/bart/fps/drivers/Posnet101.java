@@ -68,6 +68,9 @@ public class Posnet101 implements FiscalPrinter {
 
     /**
      * Creates a new instance of PosnetThermal101
+     *
+     * @param comPortName port where fiscal printer is connected
+     * @return Instance of fiscal printer
      */
     public static FiscalPrinter getFiscalPrinter(String comPortName) {
         return new Posnet101(comPortName);

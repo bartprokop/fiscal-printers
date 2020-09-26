@@ -93,9 +93,9 @@ public class BitsAndBytes {
     }
 
     /**
-     * @param value
+     * @param value word with bytes
      * @param idx 0 for eight most right bits, 3 for most left bits
-     * @return
+     * @return extracts n-byte from word
      */
     public static byte extractByte(int value, int idx) {
         value = (value >> (8 * idx)) & 0xFF;
@@ -153,8 +153,8 @@ public class BitsAndBytes {
     /**
      * Promotes byte b to unsigned 16 bit value (0-255)
      *
-     * @param b
-     * @return
+     * @param b byte to be converted to short
+     * @return byte as positive short
      */
     public static char promoteByteToChar(byte b) {
         return (char) (b & 0xff);
@@ -163,8 +163,8 @@ public class BitsAndBytes {
     /**
      * Promotes byte b to unsigned 32 bit value (0-255)
      *
-     * @param b
-     * @return
+     * @param b byte to be converted to int
+     * @return byte as positive int
      */
     public static int promoteByteToInt(byte b) {
         return (int) (b & 0xff);
@@ -173,8 +173,8 @@ public class BitsAndBytes {
     /**
      * Promotes byte b to unsigned 64 bit value (0-255)
      *
-     * @param b
-     * @return
+     * @param b byte to be converted to long
+     * @return byte as positive long
      */
     public static long promoteByteToLong(byte b) {
         return (long) (b & 0xff);
