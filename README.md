@@ -11,9 +11,9 @@ Jesli chcesz zmienic stopki paragonow, skontaktuj sie ze mna w celu otrzymania i
 Bibllioteke najlepiej pobrac z Maven Central
 
 ```
-    <groupId>name.prokop.bart.fps</groupId>
+    <groupId>dev.prokop.fps</groupId>
     <artifactId>drivers</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 ```
 
 ## Testowanie drukarki fiskalnej

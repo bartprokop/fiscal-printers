@@ -636,22 +636,22 @@ public class Thermal301 implements FiscalPrinter {
         if (s.equals("22.00")) {
             return VATRate.VAT22;
         }
-        if (s.equals("07.00")) {
+        if (s.equals("07.00") || s.equals("7.00")) {
             return VATRate.VAT07;
         }
-        if (s.equals("03.00")) {
+        if (s.equals("03.00") || s.equals("3.00")) {
             return VATRate.VAT03;
         }
         if (s.equals("23.00")) {
             return VATRate.VAT23;
         }
-        if (s.equals("08.00")) {
+        if (s.equals("08.00") || s.equals("8.00")) {
             return VATRate.VAT08;
         }
-        if (s.equals("05.00")) {
+        if (s.equals("05.00") || s.equals("5.00")) {
             return VATRate.VAT05;
         }
-        if (s.equals("00.00")) {
+        if (s.equals("00.00") || s.equals("0.00")) {
             return VATRate.VAT00;
         }
         if (s.equals("100.00")) {
